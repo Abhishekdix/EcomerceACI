@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class UserController{
 	private productService productService;
 	
 	
-	List<Product> sortedProducts;
+
 
 	@GetMapping("/register")
 	public String registerUser()
@@ -86,6 +87,7 @@ public class UserController{
 		System.out.println(lowPrice+" "+highPrice);
 		
 		List<Product> products = this.productService.getProducts();
+		List<Product> sortedProducts=new ArrayList<>();
 		
 		for (Product product : products)
 		{   
@@ -99,7 +101,7 @@ public class UserController{
 		mView.addObject("products", sortedProducts);
 		}
 			
-			
+//		sortedProducts=null;
 		return mView;
 	}
 	
@@ -275,13 +277,19 @@ public class UserController{
 		}
 		
 		
-		@RequestMapping(value = "/addToCart", method = RequestMethod.POST)
-	    public ModelAndView addToCart(@RequestParam("productId") int productId) {
+		@RequestMapping("/addToCart")
+	    public ModelAndView addToCart(HttpServletRequest req) {
 			System.out.println("inside it is ");
-			ModelAndView mView  = new ModelAndView("index");
-			Product products = this.productService.getProduct(productId);
+			String productId=req.getParameter("productId");
+			List<Product> simpleList=new ArrayList<>();
 			
-			mView.addObject("products", products);
+			System.out.println(productId);
+			ModelAndView mView  = new ModelAndView("cartPage");
+			int id=Integer.parseInt(productId);
+			Product products = this.productService.getProduct(id);
+			simpleList.add(products);
+			
+			mView.addObject("products", simpleList);
 			
 			return mView;
 			

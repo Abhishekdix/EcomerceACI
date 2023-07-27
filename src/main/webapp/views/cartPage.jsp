@@ -11,7 +11,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-Commerce</title>
+<title>Cart</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <style>
@@ -44,41 +44,7 @@ body {
 <body class="bg-light">
 	<%@include file="Components/navigationBar.jsp"%>
 
-	<a href="/sortLow" class="btn btn-outline-success my-2 my-sm-0">Low-High</a>
-
-	<a href="/sortHigh" class="btn btn-outline-success my-2 my-sm-0">High-Low</a>
-
-	<form action="RangeSort" method="post">
-		<div class="form-group">
-
-			<input type="text" name="lowPrice" id="lowPrice" 
-				required class="form-control form-control-lg"> 
-				
-			<input type="text" name="highPrice" id="highPrice" 
-				required class="form-control form-control-lg"> 	
-			
-	<input
-				type="submit" value="Apply" class="btn btn-primary btn-block">
-				
-				
-		</div>
-	</form>
-
-
-
-
-	<div class="carousel slide " data-bs-ride="carousel">
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="images/ecomerce.jpg" class="d-block w-100" alt="Image 1">
-			</div>
-			<div class="carousel-item ">
-				<img src="images/image2.jpg" class="d-block w-100" alt="Image 2">
-			</div>
-			<div class="carousel-item ">
-				<img src="images/image3.jpg" class="d-block w-100" alt="Image 3">
-			</div>
-		</div>
+	
 
 
 
@@ -95,16 +61,9 @@ body {
 
 
 
-<br>
-
-		<h2 class="text-center ">Ecommerce Services</h2>
-	</div>
 
 
-	<main>
-
-		<div class="container mt-4">
-
+	
 
 
 
@@ -120,8 +79,8 @@ body {
 								<h5 class="card-text">Category: ${product.category.name}</h5>
 								<h5 class="card-text">Price: ${product.price}</h5>
 								<p class="card-text">Description: ${product.description}</p>
-								<a href="<c:url value='/addToCart'/>?productId=${product.id}"
-									class="btn btn-primary">Add to Cart</a>
+								<%-- <a href="<c:url value='/addToCart'/>?productId=${product.id}"
+									class="btn btn-primary">Add to Cart</a> --%>
 							</div>
 						</div>
 					</div>
