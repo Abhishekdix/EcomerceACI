@@ -57,7 +57,7 @@
 				</h3>
 			</div>
 			<div class="col-md-6">
-			<form action="searchIndex" method="post">
+			<form action="search" method="post">
                 <div class="form-group">
                     
                     <input type="text" name="search" id="search" placeholder="Search*" required class="form-control form-control-lg">
@@ -66,14 +66,14 @@
                 </form>
 
 			</div>
-			
+			<p>Welcome ${user.username }</p>
 			
 			
 			<div class="col-md-3">
 				
-				<a href="/login" class="btn btn-outline-success my-2 my-sm-0">Login</a>
+				<a href="/logout" class="btn btn-outline-danger my-2 my-sm-0">Logout</a>
 
-				<a href="/register" class="btn btn-regbtn text-white">Register</a>
+				
 
 			</div>
 

@@ -35,6 +35,7 @@ public class UserController{
 	@Autowired
 	private productService productService;
 	
+	User u;
 	
 
 
@@ -63,6 +64,21 @@ public class UserController{
 	
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public ModelAndView search( @RequestParam("search") String search,Model model,HttpServletResponse res) {
+		ModelAndView mView  = new ModelAndView("UserHome");
+		System.out.println("Search element"+search);
+		
+		List<Product> products = this.productService.getProductSearch(search);
+		if (products.isEmpty()) {
+			mView.addObject("msg", "No products are available");
+		} else {
+			mView.addObject("products", products);
+		}
+		return mView;
+	}
+	
+	
+	@RequestMapping(value = "searchIndex", method = RequestMethod.POST)
+	public ModelAndView searchIdex( @RequestParam("search") String search,Model model,HttpServletResponse res) {
 		ModelAndView mView  = new ModelAndView("index");
 		System.out.println("Search element"+search);
 		
@@ -76,9 +92,13 @@ public class UserController{
 	}
 	
 	
+	
+	
+	
+	
 	@RequestMapping(value = "RangeSort", method = RequestMethod.POST)
 	public ModelAndView search( @RequestParam("lowPrice") String lowPrice,@RequestParam("highPrice") String highPrice,Model model,HttpServletResponse res) {
-		ModelAndView mView  = new ModelAndView("index");
+		ModelAndView mView  = new ModelAndView("UserHome");
 		
 		
 		int highP=Integer.parseUnsignedInt(highPrice);
@@ -118,6 +138,12 @@ public class UserController{
 		return "userLogin";
 	}
 	
+	@GetMapping("/logout")
+	public String logoutPage() {
+		return "index";
+	}
+	
+	
 
 	@GetMapping("/")
 	public ModelAndView userlogin(Model model) {
@@ -136,7 +162,7 @@ public class UserController{
 	
 	@GetMapping("/sortLow")
 	public ModelAndView sortLow(Model model) {
-		ModelAndView mView  = new ModelAndView("index");
+		ModelAndView mView  = new ModelAndView("UserHome");
 		List<Product> products = this.productService.getProducts();
 		
 		Collections.sort(products, Comparator.comparingDouble(Product::getPrice));
@@ -155,7 +181,7 @@ public class UserController{
 	
 	@GetMapping("/sortHigh")
 	public ModelAndView sortHigh(Model model) {
-		ModelAndView mView  = new ModelAndView("index");
+		ModelAndView mView  = new ModelAndView("UserHome");
 		List<Product> products = this.productService.getProducts();
 		
 		Collections.sort(products, Comparator.comparingDouble(Product::getPrice));
@@ -177,7 +203,7 @@ public class UserController{
 	public ModelAndView userlogin( @RequestParam("username") String username, @RequestParam("password") String pass,Model model,HttpServletResponse res) {
 		
 		System.out.println(pass);
-		User u = this.userService.checkLogin(username, pass);
+		 u = this.userService.checkLogin(username, pass);
 		System.out.println(u.getUsername());
 		if(u.getRole().equals("ROLE_ADMIN")) {
 			System.out.println("Inside Admin");
@@ -191,7 +217,7 @@ public class UserController{
 		if(u.getUsername().equals(username)) {	
 			
 			res.addCookie(new Cookie("username", u.getUsername()));
-			ModelAndView mView  = new ModelAndView("index");	
+			ModelAndView mView  = new ModelAndView("UserHome");	
 			mView.addObject("user", u);
 			List<Product> products = this.productService.getProducts();
 
@@ -280,12 +306,18 @@ public class UserController{
 		@RequestMapping("/addToCart")
 	    public ModelAndView addToCart(HttpServletRequest req) {
 			System.out.println("inside it is ");
+			
+			
+			
+			
 			String productId=req.getParameter("productId");
 			List<Product> simpleList=new ArrayList<>();
 			
 			System.out.println(productId);
 			ModelAndView mView  = new ModelAndView("cartPage");
 			int id=Integer.parseInt(productId);
+			
+			
 			Product products = this.productService.getProduct(id);
 			simpleList.add(products);
 			
@@ -299,7 +331,10 @@ public class UserController{
 	    }
 		
 		
-		
+		@RequestMapping(value = "placeOrder", method = RequestMethod.POST)
+		public String placeOrder() {
+			return "userLogin";
+		}
 		
 		
 		

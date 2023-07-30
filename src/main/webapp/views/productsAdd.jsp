@@ -88,7 +88,7 @@
 					</div>
 					<div class="form-group">
 						<label for="weight">Available Quantity</label> 
-						<input type="number" class="form-control border border-warning" required name="quantity" min="1" placeholder="Quantity">
+						<input type="number" class="form-control border border-warning" required name="quantity"  placeholder="Quantity">
 					</div>
 					
 					

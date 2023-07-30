@@ -44,26 +44,6 @@ body {
 <body class="bg-light">
 	<%@include file="Components/navigationBar.jsp"%>
 
-	<a href="/sortLow" class="btn btn-outline-success my-2 my-sm-0">Low-High</a>
-
-	<a href="/sortHigh" class="btn btn-outline-success my-2 my-sm-0">High-Low</a>
-
-	<form action="RangeSort" method="post">
-		<div class="form-group">
-
-			<input type="text" name="lowPrice" id="lowPrice" 
-				required class="form-control form-control-lg"> 
-				
-			<input type="text" name="highPrice" id="highPrice" 
-				required class="form-control form-control-lg"> 	
-			
-	<input
-				type="submit" value="Apply" class="btn btn-primary btn-block">
-				
-				
-		</div>
-	</form>
-
 
 
 
@@ -120,8 +100,8 @@ body {
 								<h5 class="card-text">Category: ${product.category.name}</h5>
 								<h5 class="card-text">Price: ${product.price}</h5>
 								<p class="card-text">Description: ${product.description}</p>
-								<a href="<c:url value='/addToCart'/>?productId=${product.id}"
-									class="btn btn-primary">Add to Cart</a>
+								<%-- <a href="<c:url value='/addToCart'/>?productId=${product.id}"
+									class="btn btn-primary">Add to Cart</a> --%>
 							</div>
 						</div>
 					</div>

@@ -14,35 +14,34 @@
 <title>Cart</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<style>
-body {
-	background-color: black;
+<%@include file="Components/css.jsp"%>
+     <style>
+     
+     .txt-colr {
+	color: #7b1fa2;
 }
-
-.card-body {
-	height: 250px; /* Set a fixed height for the card body */
-}
-
-.card-img-top {
-	max-height: 100px; /* Limit the height of the product image */
-	object-fit: contain;
-}
-
-.back-img {
-	/* background: url("images/ecomerce.jpg"); */
-	height: 50vh;
-	width: 100%;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
-.card-ho:hover {
-	background-color: #e7f2ef;
-}
-</style>
+     </style>
 </head>
 <body class="bg-light">
-	<%@include file="Components/navigationBar.jsp"%>
+	<%@include file="Components/design.jsp"%>
+ <div class="container-fluid "
+		style="height: 10px; background-color: #7b1fa2"></div>
+		
+	<div class="container-fluid p-3">
+
+		<div class="row">
+			<div class="col-md-3 txt-colr">
+
+				<h3>
+					<i class="fa-solid fa-cart-shopping fa-beat"></i>
+					Ecomerce ACI
+				</h3>
+			</div>
+
+<div class="container-fluid "
+		style="height: 10px; background-color: #7b1fa2"></div>
+
+
 
 	
 
@@ -79,6 +78,8 @@ body {
 								<h5 class="card-text">Category: ${product.category.name}</h5>
 								<h5 class="card-text">Price: ${product.price}</h5>
 								<p class="card-text">Description: ${product.description}</p>
+								Quantity:
+								<input type="number" min="1" max="${product.quantity}" value="1" onkeydown="return false;">
 								<%-- <a href="<c:url value='/addToCart'/>?productId=${product.id}"
 									class="btn btn-primary">Add to Cart</a> --%>
 							</div>
@@ -88,6 +89,14 @@ body {
 			</div>
 
 		</div>
+		<form action="placeOrder" method="post">
+                <div class="form-group">
+                    
+                    <input type="submit" value="Place Order" class="btn btn-primary btn-block">
+                </div>
+                </form>
+		
+		
 	</main>
 	<footer>
 		<div class="container">
