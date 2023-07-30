@@ -86,6 +86,8 @@ public class UserController {
 		}
 		return mView;
 	}
+	
+	
 
 	@RequestMapping(value = "RangeSort", method = RequestMethod.POST)
 	public ModelAndView search(@RequestParam("lowPrice") String lowPrice, @RequestParam("highPrice") String highPrice,
