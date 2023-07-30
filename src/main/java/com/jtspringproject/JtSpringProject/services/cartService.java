@@ -21,16 +21,16 @@ public class cartService {
 //    {
 //        return cartDao.getCart(id);
 //    }
-public List<Cart> getCarts(){
-    return this.cartDao.getCarts();
+public List<Cart> getCarts(int userid){
+    return this.cartDao.getCarts(userid);
 }
 
     public void updateCart(Cart cart){
         cartDao.updateCart(cart);
     }
-    public void deleteCart(Cart cart)
+    public void deleteCart(int userid)
     {
-        cartDao.deleteCart(cart);
+        cartDao.deleteCart(userid);
     }
 
 

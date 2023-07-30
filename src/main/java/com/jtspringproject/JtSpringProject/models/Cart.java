@@ -5,58 +5,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Entity(name="CART")
+@Entity(name="cart")
 public class Cart {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+@Id 
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private int cartid;
 
-    @ManyToOne
-    @JoinColumn(name="customer_id")
-    private User customer;
+@Column
+private int productid;
 
-    @ManyToMany
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "cart_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products;
+@Column
+private int userid;
+
+@Column
+private int quantity;
+
+public int getCartid() {
+	return cartid;
+}
+
+public void setCartid(int cartid) {
+	this.cartid = cartid;
+}
+
+public int getProductid() {
+	return productid;
+}
+
+public void setProductid(int productid) {
+	this.productid = productid;
+}
+
+public int getUserid() {
+	return userid;
+}
+
+public void setUserid(int userid) {
+	this.userid = userid;
+}
+
+public int getQuantity() {
+	return quantity;
+}
+
+public void setQuantity(int quantity) {
+	this.quantity = quantity;
+}
+
+public Cart() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+public Cart(int cartid, int productid, int userid, int quantity) {
+	super();
+	this.cartid = cartid;
+	this.productid = productid;
+	this.userid = userid;
+	this.quantity = quantity;
+}
 
 
-    public Cart() {
-        products = new ArrayList<>();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public User getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(User customer) {
-        this.customer = customer;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public void addProduct(Product product) {
-        products.add(product);
-    }
-
-    public void removeProduct(Product product) {
-        products.remove(product);
-    }
 }

@@ -103,7 +103,7 @@
 				</a></li>
 				<li class="nav-item active"><a class="nav-link" href="#">Features</a></li>
 
-				<li class="nav-item active"><a class="nav-link " href="#">About</a>
+				<li class="nav-item active"><a class="nav-link " href="/cart">Cart</a>
 				</li>
 			</ul>
 			<div class="btnset">

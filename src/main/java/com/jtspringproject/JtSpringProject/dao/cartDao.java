@@ -22,9 +22,10 @@ public class cartDao {
     }
 
     @Transactional
-    public List<Cart> getCarts() {
-        return this.sessionFactory.getCurrentSession().createQuery("from CART").list();
+    public List<Cart> getCarts(int userid) {
+        return this.sessionFactory.getCurrentSession().createQuery("FROM cart WHERE userid = :userid", Cart.class).setParameter("userid", userid).list();
     }
+
 
     @Transactional
     public void updateCart(Cart cart) {
@@ -32,7 +33,8 @@ public class cartDao {
     }
 
     @Transactional
-    public void deleteCart(Cart cart) {
-        this.sessionFactory.getCurrentSession().delete(cart);
+    public void deleteCart(int userid) {
+        this.sessionFactory.getCurrentSession().createQuery("DELETE FROM cart WHERE userid = :userid").setParameter("userid", userid).executeUpdate();
     }
+
 }
