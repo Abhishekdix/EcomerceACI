@@ -1,0 +1,21 @@
+body{
+	background-color: black;
+}
+.bg-custome{
+	background-color: #7b1fa2;
+}
+.btn-regbtn{
+	background-color:#ab47bc ;
+}
+.navbar .nav-item:hover .nav-link{
+	background-color: white;
+	color:#7b1fa2;
+	border-radius: 15px;
+	
+}
+.txt-colr{
+	color: #7b1fa2;
+}
+.btnset{
+	margin-left: 75%;
+}
